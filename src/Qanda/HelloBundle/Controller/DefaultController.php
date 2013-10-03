@@ -8,15 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
+
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{param1}", name="_qanda_hello")
+     * @Route("/{v1}/{v2}", name="_qanda_hello")
      * @Template()
-     * @Cache(maxage="86400")
      */
-    public function indexAction($param1)
+    public function indexAction($v1, $v2=5)
     {
-        return array('param1' => $param1);
+        $str = $v1.$v2;
+        return array('text' => $str);
     }
 }
