@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 use Qanda\HelloBundle\Entity\Product;
+use Qanda\HelloBundle\Entity\Category;
 
 
 class DefaultController extends Controller
@@ -32,12 +33,17 @@ class DefaultController extends Controller
      */
     public function addAction()
     {
+        $category = new Category();
+        $category->setName('Main Products');
+
         $product = new Product();
         $product->setName('New Product name');
         $product->setPrice('20.99');
         $product->setDescription('Lorem ipsum dolor sit amet');
+        $product->setCategory($category);
 
         $em = $this->getDoctrine()->getManager();
+        $em->persist($category);
         $em->persist($product);
         $em->flush();
 

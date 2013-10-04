@@ -6,6 +6,12 @@
 <ul>
 {% for product in products %}
     <li>
+        {% if product.category %}
+            {{ product.category.name }}
+        {% else %}
+            &lt;no category&gt;
+        {% endif %}
+        :
         <a href="{{ path("product_show", {"id": product.id}) }}">
             {{ product.name }}
         </a>
